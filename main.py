@@ -20,7 +20,11 @@ run = "python main.py"
 # 10. Make the game playable more than once, add a while loop around all of your code
 
 import random
+
 boolean2=True
+boolean=True
+count=0
+
 while boolean2:
   y=input("Choose a maximum number: ")
   if int(y) > 1 & y.isdigit() :
@@ -29,7 +33,7 @@ while boolean2:
   else :
     print("It must a valid number greater than 1.")
 
-boolean=True
+
 while boolean:
   guess=input("Guess a number! ")
   if guess.isdigit():
@@ -37,15 +41,38 @@ while boolean:
     guess=int(guess)
   else :
     print("Not a valid input. Try again!")
-
+if guess==number :
+  count=count+1
+  print("Correct! You win!")
+  print("Guess Count: " + str(count))
+  print("\n")
+if guess>number :
+      guess=int(guess)
+      count=count+1
+      print("Guess lower")
+if guess<number :
+      guess=int(guess)
+      count=count+1
+      print("Guess higher")
+  
+else :
+   count=count+1
 while guess!=number:
-  guess=input("Guess another number between 1 and " + str(y) + " :")
+  guess=input("Guess another number between 1 and " + str(y) + ": ")
   if guess.isdigit():
+    guess=(int(guess))
     if guess == number :
-      print("Correct!")
+      
+      print("Correct! You win!")
+      print("Guess Count: " + str(count))
+      print("\n")      
     if int(guess)>number :
       guess=int(guess)
+      count=count+1
+      print("Guess lower")
     if int(guess)<number :
       guess=int(guess)
+      count=count+1
+      print("Guess higher")
   else :
     print("Not a valid number. Try again")
