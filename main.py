@@ -23,56 +23,108 @@ import random
 
 boolean2=True
 boolean=True
-count=0
+boolean3=True
+player2boolean=True
+count1=0
+count2=0
 
 while boolean2:
-  y=input("Choose a maximum number: ")
-  if int(y) > 1 & y.isdigit() :
-    number=random.randrange(1,int(y))
-    boolean2=False
+  player1=input("Player 1, insert your name: ")
+  x=input(str(player1)+" : Choose a minimum number: ")
+  if  x.isdigit() :
+      boolean3=False
+  player2=input("Player 2, insert your name: ")
+  y=input(str(player2)+" : Choose a maximum number: ")
+  if  y.isdigit() :
+    if int(y) > int(x) :
+      number=random.randrange(int(x),int(y))
+      boolean2=False
+    else :
+      print("The minimum must be less than the maximum")
   else :
-    print("It must a valid number greater than 1.")
+    print("The minimum must be less than the maximum")
 
 
 while boolean:
-  guess=input("Guess a number! ")
+  guess=input(str(player1) +": Guess a number between " + str(x)+ " and " + str(y) + ": ")
   if guess.isdigit():
     boolean=False
     guess=int(guess)
   else :
     print("Not a valid input. Try again!")
 if guess==number :
-  count=count+1
-  print("Correct! You win!")
-  print("Guess Count: " + str(count))
+  count1=count1+1
+  print("Correct! "+ str(player1) + " wins!")
+  print("Guess Count: " + str(count1))
   print("\n")
 if guess>number :
       guess=int(guess)
-      count=count+1
+      count1=count1+1
       print("Guess lower")
 if guess<number :
       guess=int(guess)
-      count=count+1
+      count1=count1+1
       print("Guess higher")
-  
-else :
-   count=count+1
+
+if guess!=number :
+  while player2boolean:
+    guess=input(str(player2) + ": Guess another number between " + str(x)+ " and " + str(y) + ": ")
+    if guess.isdigit():
+      player2boolean=False
+      guess=int(guess)
+    else :
+       print("Not a valid input. Try again!")
+    if guess==number :
+      count2=count2+1
+      print("Correct! " + str(player2) + " wins!")
+      print("Guess Count: " + str(count2))
+      print("\n")
+    if guess>number :
+          guess=int(guess)
+          count2=count2+1
+          print("Guess lower")
+    if guess<number :
+          guess=int(guess)
+          count2=count2+1
+          print("Guess higher")
+    
 while guess!=number:
-  guess=input("Guess another number between 1 and " + str(y) + ": ")
-  if guess.isdigit():
+  guess=input(str(player1) + ": Guess another number between " + str(x)+ " and " + str(y) + ": ")
+  if guess.isdigit() :
     guess=(int(guess))
     if guess == number :
-      
-      print("Correct! You win!")
-      print("Guess Count: " + str(count))
+      count1+=1
+      print("Correct! "+str(player1) +" wins!")
+      print(str(player1) + " Guess Count: " + str(count1))
+      print(str(player2) + " Guess Count: " + str(count2))
       print("\n")      
     if int(guess)>number :
       guess=int(guess)
-      count=count+1
+      count1=count1+1
       print("Guess lower")
     if int(guess)<number :
       guess=int(guess)
-      count=count+1
+      count1=count1+1
       print("Guess higher")
   else :
     print("Not a valid number. Try again")
+  if guess!=number :
+    guess=input(str(player2)+" Guess another number between " + str(x)+ " and " + str(y) + ": ")
+    if guess.isdigit():
+      guess=(int(guess))
+      if guess == number :
+        count2+=1
+        print("Correct! "+str(player2) +" wins!")
+        print(str(player1) + " Guess Count: " + str(count1))
+        print(str(player2) + " Guess Count: " + str(count2))
+        print("\n")      
+      if int(guess)>number :
+        guess=int(guess)
+        count2=count2+1
+        print("Guess lower")
+      if int(guess)<number :
+        guess=int(guess)
+        count2=count2+1
+        print("Guess higher")
+    else :
+      print("Not a valid number. Try again")
